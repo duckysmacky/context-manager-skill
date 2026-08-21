@@ -14,7 +14,7 @@ Every file below is one of two kinds, and the kind determines how it's edited:
   saying so; don't rewrite history. (`FINDINGS.md`, `ATTEMPTS.md`,
   `CONVERSATIONS.md`)
 
-Two running examples are used throughout: `FS470-12`, a ticket-backed issue,
+Two running examples are used throughout: `FW-1427`, a ticket-backed issue,
 and `payment-system`, a self-directed one.
 
 ---
@@ -58,7 +58,7 @@ updated: <YYYY-MM-DD>
 
 ```markdown
 ---
-id: FS470-12
+id: FW-1427
 status: open
 kind: bug
 created: 2026-08-12
@@ -86,7 +86,7 @@ standby) - tracked separately if it turns out to be related.
 ## Links
 
 - Datasheet: [NVMe controller rev-B errata]
-- Original bug report: FS470-12
+- Original bug report: FW-1427
 ```
 
 #### Example of self-directed issue
@@ -169,7 +169,7 @@ whole point of this file is preventing repeated dead ends.
 ## <YYYY-MM-DD> - <short description of the approach>
 
 **Hypothesis:** <what you expected to happen, and why>
-**Result:** worked | parcial | failed
+**Result:** worked | partial | failed
 **Details:** <what actually happened; error output if relevant>
 **Next:** <follow-up idea, or "abandoned - see FINDINGS.md">
 ```
@@ -250,7 +250,7 @@ ones per entry:
 ```markdown
 | Issue | Relationship | Notes |
 |---|---|---|
-| FS470-09 | depends on | needs the DMA controller fix landed first |
+| FW-1419 | depends on | needs the DMA controller fix landed first |
 | power-management | related to | same board rev, might share root cause |
 ```
 
@@ -294,7 +294,7 @@ waste the next session's time to rediscover.>
 **Example:**
 
 ```markdown
-# Handoff — FS470-12
+# Handoff — FW-1427
 
 **Last updated:** 2026-08-14 18:02 by Claude Code
 

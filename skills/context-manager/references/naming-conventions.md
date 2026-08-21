@@ -9,9 +9,9 @@ Rules for naming issue folders and the files inside them. `SKILL.md` covers
 reformat, lowercase, or abbreviate it.
 
 ```
-.context/FS470-12/     # matches the tracker exactly
-.context/fs470-12/     # don't lowercase it
-.context/FS-470-12/    # don't "fix" its formatting
+.context/FW-1427/      # matches the tracker exactly
+.context/fw-1427/      # don't lowercase it
+.context/FW1427/       # don't "fix" its formatting
 ```
 
 Preserving the ID exactly matters more than it looks: it's what lets the
@@ -36,7 +36,7 @@ name alone in six months, it's specific enough.
 - If the ID genuinely has to change (e.g. a ticket gets renumbered by the 
   tracker), rename the folder and add a line to the new `ISSUE.md`:
   ```markdown
-  - redirected-from: FS470-12
+  - redirected-from: FW-1427
   ```
 
 ## File names inside an issue folder

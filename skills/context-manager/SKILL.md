@@ -1,6 +1,6 @@
 ---
 name: context-manager
-description: Use this skill when working on a complex engineering task that spans multiple sessions or multiple coding agents (Claude Code, Codex, etc.) - creating, reading, and updating a persistent .context/<ISSUE-ID>/ folder that tracks current progress on the task, prior conversations, attempted approaches, and confirmed findings so no context is lost between sessions. Trigger when starting or continuing work on a feature or a system (e.g. "payment system", "user auth", "subscription model"), a specific ticket with an ID (e.g. JIRA-123, FS470-12), resuming a previous investigation, when the user references "the ticket", "what we tried before", "where we left off", "worked in a different session", "continue working on", "based on the findings", or similar, asks to log a finding or an attempt.
+description: Use this skill when working on a complex engineering task that spans multiple sessions or multiple coding agents (Claude Code, Codex, etc.) - creating, reading, and updating a persistent .context/ISSUE-ID/ folder that tracks current progress on the task, prior conversations, attempted approaches, and confirmed findings so no context is lost between sessions. Trigger when starting or continuing work on a feature or a system (e.g. "payment system", "user auth", "subscription model"), a specific ticket with an ID (e.g. JIRA-123, FW-1427), resuming a previous investigation, when the user references "the ticket", "what we tried before", "where we left off", "worked in a different session", "continue working on", "based on the findings", or similar, asks to log a finding or an attempt.
 ---
 
 # Context Manager
@@ -37,7 +37,7 @@ relevant files (e.g., in ISSUE.md or CONNECTIONS.md).
 
 Every issue is usually of two kinds:
 - **Ticket-backed** - comes from an external tracker (Jira, GitHub Issues, etc.)
-  and already has an ID, e.g. `FS470-12`. The folder name is that ID, verbatim.
+  and already has an ID, e.g. `FW-1427`. The folder name is that ID, verbatim.
   If user mentions a ticket ID, the agent should always use it as the main 
   identifier for the issue, and in all other references to the issue, prefer that ID. 
 - **Self-directed** - you're splitting the project into a separate issue for 
@@ -48,8 +48,9 @@ Every issue is usually of two kinds:
 
 Each issue gets its own subfolder, named after its ticket ID, at the root of the repository (or wherever the project's context root is configured):
 
+```
 .context/
-└── <ISSUE-ID>/              # e.g. .context/FS470-12/ or .context/something-support/
+└── <ISSUE-ID>/              # e.g. .context/FW-1427/ or .context/something-support/
     ├── ISSUE.md             # what the issue is: description, scope, acceptance criteria, links
     ├── FINDINGS.md          # durable technical facts discovered along the way
     ├── ATTEMPTS.md          # every approach tried, and its outcome
@@ -58,6 +59,7 @@ Each issue gets its own subfolder, named after its ticket ID, at the root of the
     ├── HANDOFF.md           # notes for the next session or agent
     ├── *.md                 # free-form notes as needed (e.g. some-note.md)
     └── *                    # any other files relevant to the issue (logs, screenshots, diagrams, etc.)
+```
 
 The exact structure expected inside each file is in `references/file-schemas.md`. Folder and file naming rules are in `references/naming-conventions.md`.
 
@@ -130,4 +132,4 @@ the `.context/` folder is the only thing that reliably is.
 - `references/naming-conventions.md` - folder and file naming rules
 - `references/session-handoff.md` - multi-agent handoff protocol, in detail
 - `assets/templates/` - blank templates used when scaffolding a new issue
-- `examples/sample-issue/` - a fully worked example issue end to end
+- `examples/FW-1427/` - a fully worked, real-world BIOS issue end to end
