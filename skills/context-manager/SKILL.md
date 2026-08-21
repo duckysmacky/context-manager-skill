@@ -75,11 +75,12 @@ Populate `ISSUE.md` from whatever the user or issue description provides - don't
 
 ### 2. Resuming an issue
 
-Before taking any action, read the existing context in this order: `ISSUE.md`, `FINDINGS.md`, `ATTEMPTS.md`, 
-`CONVERSATIONS.md`, then `CONNECTIONS.md` and any free-form notes. Summarize back to the user what's already 
-known and what was last being tried, so the user and the agent start from the same state. 
+Before taking any action, read the existing context in this order: `ISSUE.md`, `FINDINGS.md`, `ATTEMPTS.md` and
+then `HANDOFF.md` (if it exists). These are the core foundational files for the issue, the rest of the files are not as important
+when resuming an issue from a fresh session and can be read as needed.
 
-Don't silently re-derive context the folder already has, and don't re-attempt something `ATTEMPTS.md` 
+Summarize back to the user what's already known and what was last being tried, so the user and the agent start from 
+the same state. Don't silently re-derive context the folder already has, and don't re-attempt something `ATTEMPTS.md` 
 already ruled out without saying so.
 
 ### 3. While working
@@ -101,6 +102,9 @@ Never delete or rewrite history in these files - append and date-stamp instead. 
 not just the current state.
 
 ### 4. Ending a session or handing off
+
+Sessions have to be ended explicitly by the user, don't assume that a session is over by youself. User has to explicitly 
+say that the session is over, or that they are handing off to another agent.
 
 Before ending a session, write a short note about the current progress and status: current progress, what was last tried, 
 what is next to try, and any other relevant context. Put this information in `HANDOFF.md`, overwriting the previous contents -
