@@ -30,7 +30,7 @@ Out of scope: the already-working parallel shelf topology, fixed MMIO addresses,
 
 ## Links
 
-- Original task context: [source-material/starting-prompt.md](source-material/starting-prompt.md)
+- Original task context: [sources/starting-prompt.md](sources/starting-prompt.md)
 - Bus-rebalance report: [notes/bus-rebalance-solution-report.md](notes/bus-rebalance-solution-report.md)
 - Recovery report: [notes/recovery-solution-report.md](notes/recovery-solution-report.md)
 - Verification procedure: [notes/verification-commands.md](notes/verification-commands.md)

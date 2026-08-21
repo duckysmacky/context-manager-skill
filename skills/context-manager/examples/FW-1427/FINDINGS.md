@@ -4,13 +4,13 @@
 
 The setup option only adds hot-plug padding inside the bus window already assigned to a root port. It cannot supply the roughly 120 bus numbers originally requested when the containing I/O stack has a smaller window.
 
-**Evidence:** Ticket participants reported that raising the setting did not help; later source analysis placed the padding in DXE, after the early platform bus allocation. See [source-material/ticket-conversation.md](source-material/ticket-conversation.md) and [notes/pci-bus-allocation-findings.md](notes/pci-bus-allocation-findings.md).
+**Evidence:** Ticket participants reported that raising the setting did not help; later source analysis placed the padding in DXE, after the early platform bus allocation. See [sources/ticket-conversation.md](sources/ticket-conversation.md) and [notes/pci-bus-allocation-findings.md](notes/pci-bus-allocation-findings.md).
 
 ## 2026-06-08 - Parallel and cascaded shelves consume bus windows differently
 
 Forty-eight drives work on one socket when connected in parallel because their PCIe switch trees are distributed across several I/O stacks. The same drives fail in cascade because the host card, both shelf switches, their service endpoints, and all drives must fit behind one stack window.
 
-**Evidence:** The customer storage team confirmed that 48 drives worked in parallel without firmware changes but not in cascade behind one slot. See [source-material/customer-conversation.md](source-material/customer-conversation.md) and [notes/bus-rebalance-solution-report.md](notes/bus-rebalance-solution-report.md).
+**Evidence:** The customer storage team confirmed that 48 drives worked in parallel without firmware changes but not in cascade behind one slot. See [sources/customer-conversation.md](sources/customer-conversation.md) and [notes/bus-rebalance-solution-report.md](notes/bus-rebalance-solution-report.md).
 
 ## 2026-06-26 - A precompiled initialization component overwrites the supplied socket ratio
 

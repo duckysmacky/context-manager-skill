@@ -57,11 +57,23 @@ Each issue gets its own subfolder, named after its ticket ID, at the root of the
     ├── CONVERSATIONS.md     # context and decisions from humans (comments, calls, chat)
     ├── CONNECTIONS.md       # relationships and dependencies between issues
     ├── HANDOFF.md           # notes for the next session or agent
-    ├── *.md                 # free-form notes as needed (e.g. some-note.md)
-    └── *                    # any other files relevant to the issue (logs, screenshots, diagrams, etc.)
+    ├── notes/               # working analyses, procedures, reports, and design notes
+    ├── sources/              # source text: ticket descriptions, conversations, prompts, document excerpts
+    └── attachments/         # logs, traces, screenshots, diagrams, dumps, patches, and other artifacts
 ```
 
 The exact structure expected inside each file is in `references/file-schemas.md`. Folder and file naming rules are in `references/naming-conventions.md`.
+
+### Supporting folders
+
+The six core files are always the entry point and the source of truth for current state, durable findings, attempts, decisions, relationships, and handoff.
+Use the following optional folders when the supporting material would make the issue root noisy or a core file too detailed.
+
+- **`notes/`** - store issue-specific analysis written during the work: investigation reports, implementation plans, validation procedures, design notes, command references, and detailed handoffs for a subsystem. Use notes for material that is useful but too long or specialized for a core file. Notes may be revised as understanding improves. Keep durable conclusions summarized in `FINDINGS.md`, attempts in `ATTEMPTS.md`, and current actions in `HANDOFF.md`; link to the detailed note instead of duplicating it.
+- **`sources/`** - store textual inputs that originated outside the context system: ticket descriptions, relevant conversation extracts, prompts, emails, copied documentation sections, and other human-provided background. Prefer Markdown or plain text and retain enough attribution and date information to understand provenance. Keep source material separate from agent-authored analysis; record decisions derived from it in `CONVERSATIONS.md` and confirmed facts in `FINDINGS.md`.
+- **`attachments/`** - store evidence and artifacts that should remain in their native or captured form: logs, traces, command output, screenshots, diagrams, register dumps, patches, and test results. Use descriptive filenames and group large collections into small type-based subfolders such as `attachments/logs/` or `attachments/screenshots/`. Do not use attachments as the only record of an important conclusion; link the artifact from the relevant core entry or note and state what it proves.
+
+Use relative links between core files, notes, sources, and attachments so the whole issue folder remains portable. Avoid copying the same material into multiple folders.
 
 ## Workflow
 
@@ -99,6 +111,10 @@ already ruled out without saying so.
 
 - **Found a dependency on, or relationship to, another issue?** - append to `CONNECTIONS.md`, referencing the 
   other issue's ID directly and how they connect.
+
+- **Received new source material?** - place textual inputs in `sources/` and binary or captured artifacts in `attachments/`, then update the relevant core file with the decision, finding, or attempt supported by that material.
+
+- **Produced a detailed analysis or procedure?** - write it in `notes/` and link it from the relevant core entry. Keep the core entry concise and self-contained.
   
 Never delete or rewrite history in these files - append and date-stamp instead. The value of `.context/` is the trail,
 not just the current state.
@@ -125,6 +141,7 @@ the `.context/` folder is the only thing that reliably is.
 - `FINDINGS.md`, `ATTEMPTS.md` and `CONVERSATIONS.md` are append-only logs, never edit or delete existing entries, 
   only add.
 - `ISSUE.md`, `HANDOFF.md` and `CONNECTIONS.md` are living documents - edit them in place to reflect current state.
+- Treat `notes/`, `sources/`, and `attachments/` as optional supporting material, not replacements for the six core files.
 
 ## See also
 

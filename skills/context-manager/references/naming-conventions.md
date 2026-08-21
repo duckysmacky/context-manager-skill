@@ -50,8 +50,22 @@ ISSUE.md  FINDINGS.md  ATTEMPTS.md  CONVERSATIONS.md  CONNECTIONS.md  HANDOFF.md
 Don't repurpose one of these names for something else, and don't create a
 near-miss (`Findings.md`, `finding.md`).
 
-**Free-form notes** - lowercase-kebab-case `.md` files, named for their
-actual content, not generically:
+## Supporting folders
+
+Use these exact lowercase names when an issue needs supporting material:
+
+```text
+notes/          # agent- or human-authored working documents
+sources/         # textual material received from external sources
+attachments/    # captured or native evidence and artifacts
+```
+
+Do not create alternate names such as `docs/`, `source/`, `files/`,
+or `artifacts/`. Do not create any of these folders until the issue has content
+that belongs there.
+
+**Files in `notes/`** - use lowercase-kebab-case `.md` names that describe
+their actual content:
 
 ```
 what-we-tried-before-reopening.md   # says why it exists
@@ -60,11 +74,17 @@ notes.md                            # tells you nothing
 misc.md                             # defeats the point of a structured system
 ```
 
-**Non-markdown attachments** (logs, traces, screenshots, register dumps): If an 
-issue accumulates more than a handful of these, consider nesting them under an 
-`attachments/` subfolder inside the issue folder so the top level stays scannable - 
-the six core files plus a couple of note files at a glance, not a directory listing 
-full of log dumps.
+**Files in `sources/`** - prefer lowercase-kebab-case names and preserve the
+source format when it matters. Include the source or channel in the name when
+useful, for example `ticket-description.md`, `customer-chat-2026-06-08.md`, or
+`datasheet-section-7.txt`.
+
+**Files in `attachments/`** - use descriptive lowercase-kebab-case names and
+keep meaningful extensions, for example `cold-boot-07.log`,
+`pcie-tree-before.txt`, or `recovery-flow.png`. If there are many files of one
+type, group them one level deeper by type (`attachments/logs/`,
+`attachments/screenshots/`, `attachments/patches/`) rather than by vague names
+such as `misc/` or `old/`.
 
 ## Cross-referencing another issue
 
