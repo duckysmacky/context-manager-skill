@@ -147,6 +147,5 @@ the `.context/` folder is the only thing that reliably is.
 
 - `references/file-schemas.md` - exact structure and required sections of each file
 - `references/naming-conventions.md` - folder and file naming rules
-- `references/session-handoff.md` - multi-agent handoff protocol, in detail
 - `assets/templates/` - blank templates used when scaffolding a new issue
 - `examples/FW-1427/` - a fully worked, real-world BIOS issue end to end
