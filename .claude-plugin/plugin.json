@@ -1,7 +1,7 @@
 {
   "name": "context-manager",
   "displayName": "Context Manager",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Preserve engineering context across long-running tasks, sessions, and coding agents.",
   "author": {
     "name": "duckysmacky",
