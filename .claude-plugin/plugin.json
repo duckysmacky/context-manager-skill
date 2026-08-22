@@ -1,0 +1,21 @@
+{
+  "name": "context-manager",
+  "displayName": "Context Manager",
+  "version": "0.1.0",
+  "description": "Preserve engineering context across long-running tasks, sessions, and coding agents.",
+  "author": {
+    "name": "duckysmacky",
+    "url": "https://github.com/duckysmacky"
+  },
+  "homepage": "https://github.com/duckysmacky/context-manager-skill",
+  "repository": "https://github.com/duckysmacky/context-manager-skill",
+  "keywords": [
+    "context-management",
+	"context",
+	"development",
+	"issue",
+    "engineering",
+    "handoff",
+    "multi-agent"
+  ]
+}
