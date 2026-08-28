@@ -116,7 +116,7 @@ readonly core_files=(
   ISSUE.md
   FINDINGS.md
   ATTEMPTS.md
-  CONVERSATIONS.md
+  DECISIONS.md
   CONNECTIONS.md
   HANDOFF.md
 )
@@ -160,7 +160,7 @@ sed \
   -e "s|# <Issue title>|# $escaped_title|" \
   "$templates_dir/ISSUE.md" > "$staging_dir/ISSUE.md"
 
-for name in FINDINGS.md ATTEMPTS.md CONVERSATIONS.md; do
+for name in FINDINGS.md ATTEMPTS.md DECISIONS.md; do
   sed -n '1p' "$templates_dir/$name" > "$staging_dir/$name"
   printf '\n' >> "$staging_dir/$name"
 done

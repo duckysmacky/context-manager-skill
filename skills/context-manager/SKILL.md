@@ -54,7 +54,7 @@ Each issue gets its own subfolder, named after its ticket ID, at the root of the
     ├── ISSUE.md             # what the issue is: description, scope, acceptance criteria, links
     ├── FINDINGS.md          # durable technical facts discovered along the way
     ├── ATTEMPTS.md          # every approach tried, and its outcome
-    ├── CONVERSATIONS.md     # context and decisions from humans (comments, calls, chat)
+    ├── DECISIONS.md     # durable choices, their rationale, and impact
     ├── CONNECTIONS.md       # relationships and dependencies between issues
     ├── HANDOFF.md           # notes for the next session or agent
     ├── notes/               # working analyses, procedures, reports, and design notes
@@ -70,7 +70,7 @@ The six core files are always the entry point and the source of truth for curren
 Use the following optional folders when the supporting material would make the issue root noisy or a core file too detailed.
 
 - **`notes/`** - store issue-specific analysis written during the work: investigation reports, implementation plans, validation procedures, design notes, command references, and detailed handoffs for a subsystem. Use notes for material that is useful but too long or specialized for a core file. Notes may be revised as understanding improves. Keep durable conclusions summarized in `FINDINGS.md`, attempts in `ATTEMPTS.md`, and current actions in `HANDOFF.md`; link to the detailed note instead of duplicating it.
-- **`sources/`** - store textual inputs that originated outside the context system: ticket descriptions, relevant conversation extracts, prompts, emails, copied documentation sections, and other human-provided background. Prefer Markdown or plain text and retain enough attribution and date information to understand provenance. Keep source material separate from agent-authored analysis; record decisions derived from it in `CONVERSATIONS.md` and confirmed facts in `FINDINGS.md`.
+- **`sources/`** - store textual inputs that originated outside the context system: ticket descriptions, relevant conversation extracts, prompts, emails, copied documentation sections, and other human-provided background. Prefer Markdown or plain text and retain enough attribution and date information to understand provenance. Keep source material separate from agent-authored analysis; record the resulting decisions in `DECISIONS.md` and confirmed facts in `FINDINGS.md`.
 - **`attachments/`** - store evidence and artifacts that should remain in their native or captured form: logs, traces, command output, screenshots, diagrams, register dumps, patches, and test results. Use descriptive filenames and group large collections into small type-based subfolders such as `attachments/logs/` or `attachments/screenshots/`. Do not use attachments as the only record of an important conclusion; link the artifact from the relevant core entry or note and state what it proves.
 
 Use relative links between core files, notes, sources, and attachments so the whole issue folder remains portable. Avoid copying the same material into multiple folders.
@@ -106,8 +106,7 @@ already ruled out without saying so.
 - **Learned something durable about the system?** (a root cause, a hardware constraint, how a subsystem actually 
   behaves) - append it to `FINDINGS.md`. This file is signal, not narrative: short, factual entries, not a transcript.
 
-- **Got input from a human?** (a decision, a clarification, a ticket comment) - append it to `CONVERSATIONS.md`, 
-  attributed to its source. 
+- **Made or confirmed a durable decision?** (a scope change, design choice, priority call, or accepted trade-off) - append it to `DECISIONS.md`. State the decision, rationale, and impact; link the supporting source, finding, attempt, or note when useful.
 
 - **Found a dependency on, or relationship to, another issue?** - append to `CONNECTIONS.md`, referencing the 
   other issue's ID directly and how they connect.
@@ -134,11 +133,11 @@ the `.context/` folder is the only thing that reliably is.
 - One `.context/<ISSUE-ID>/` folder per issue
 - Never share a folder across issues, even closely related ones
 - Don't duplicate the same fact across files: `FINDINGS.md` is the single source of truth for technical facts, `ATTEMPTS.md` for 
-  what was tried, `CONVERSATIONS.md` for what was received from human input or additional external conversations. If you're not 
+  what was tried, and `DECISIONS.md` for durable choices and their rationale. Raw conversation belongs in `sources/`. If you're not
   sure which file something belongs in, see `references/file-schemas.md`
 - If the project has no `.gitignore` entry for `.context/`, ask the user whether context should be version-controlled before 
   assuming - some teams want it committed and shared, others want it local-only
-- `FINDINGS.md`, `ATTEMPTS.md` and `CONVERSATIONS.md` are append-only logs, never edit or delete existing entries, 
+- `FINDINGS.md`, `ATTEMPTS.md` and `DECISIONS.md` are append-only logs, never edit or delete existing entries,
   only add.
 - `ISSUE.md`, `HANDOFF.md` and `CONNECTIONS.md` are living documents - edit them in place to reflect current state.
 - Treat `notes/`, `sources/`, and `attachments/` as optional supporting material, not replacements for the six core files.

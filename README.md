@@ -13,7 +13,7 @@ It tracks:
 - the issue, scope, and acceptance criteria
 - confirmed technical findings
 - attempted approaches and their outcomes
-- decisions and context from human conversations
+- durable decisions, their rationale, and resulting impact
 - relationships between issues
 - the current handoff state and next action
 
@@ -27,7 +27,7 @@ Each issue gets a self-contained folder:
     ├── ISSUE.md
     ├── FINDINGS.md
     ├── ATTEMPTS.md
-    ├── CONVERSATIONS.md
+    ├── DECISIONS.md
     ├── CONNECTIONS.md
     ├── HANDOFF.md
     ├── notes/
@@ -49,7 +49,7 @@ scripts/new_issue.sh <issue_id> --kind <issue_kind> --title <issue_title>
 
 > Recomended for Claude Code in specific
 
-Add my custom skills marketplace (if you haven't):
+Add my custom skills marketplace:
 
 ```bash
 claude plugin marketplace add duckysmacky/skills

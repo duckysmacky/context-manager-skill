@@ -44,7 +44,7 @@ name alone in six months, it's specific enough.
 **The six core files are reserved names, exact casing, no exceptions:**
 
 ```
-ISSUE.md  FINDINGS.md  ATTEMPTS.md  CONVERSATIONS.md  CONNECTIONS.md  HANDOFF.md
+ISSUE.md  FINDINGS.md  ATTEMPTS.md  DECISIONS.md  CONNECTIONS.md  HANDOFF.md
 ```
 
 Don't repurpose one of these names for something else, and don't create a
@@ -88,7 +88,7 @@ such as `misc/` or `old/`.
 
 ## Cross-referencing another issue
 
-When referencing another issue in prose, like inside `CONVERSATIONS.md`,
+When referencing another issue in prose, like inside `DECISIONS.md`,
 `ISSUE.md`, or a free-form note, always use its literal folder name, not
 a paraphrase, so references stay greppable.
 

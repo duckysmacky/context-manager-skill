@@ -12,7 +12,7 @@ Every file below is one of two kinds, and the kind determines how it's edited:
 - **Append-only log** - a record of what happened, in order. Never edit or
   delete a past entry - if something turns out to be wrong, add a new entry
   saying so; don't rewrite history. (`FINDINGS.md`, `ATTEMPTS.md`,
-  `CONVERSATIONS.md`)
+  `DECISIONS.md`)
 
 Two running examples are used throughout: `FW-1427`, a ticket-backed issue,
 and `payment-system`, a self-directed one.
@@ -45,7 +45,7 @@ updated: <YYYY-MM-DD>
 - `## Summary` - one or two sentences. What this issue is, in plain language.
 - `## Scope` - what's explicitly in and out. This is the section most likely
   to change over time; when it does, the *change itself* (and why) goes in
-  `CONVERSATIONS.md`, but `ISSUE.md` always reflects the current scope, not
+  `DECISIONS.md`, but `ISSUE.md` always reflects the current scope, not
   the history of how it got there.
 - `## Acceptance criteria` - a checklist. Concrete and testable, not
   aspirational.
@@ -190,33 +190,44 @@ this done - see FINDINGS.md for the follow-up measurement.
 
 ---
 
-## `CONVERSATIONS.md` - append-only log
+## `DECISIONS.md` - append-only log
 
-**Purpose:** context and decisions that came from a human - ticket
-comments, calls, chat threads. If it changed the issue's direction, the
-decision is stated explicitly, not left implicit in a paraphrase.
+**Purpose:** a durable, chronological record of choices that affect the
+issue's scope, priority, design, or execution. A decision can be informed by
+people, agents, experiments, or reviews; this file records the resulting
+choice and rationale, not a transcript of the discussion.
 
 **Entry format:**
 
 ```markdown
-## <YYYY-MM-DD> - <source: name/role, and channel>
+## <YYYY-MM-DD> - <short decision title>
 
-<what was said or decided, in your own words or a short attributed quote>
+**Status:** <proposed | accepted | superseded | rejected>
 
-**Decision:** <only if this changed scope, priority, or direction -
-state it plainly>
+**Decision:** <state the choice plainly>
+
+**Rationale:** <why this was chosen; link supporting evidence when useful>
+
+**Impact:** <what changes in scope, priority, design, or next steps>
+
+**References:** <optional links to sources, findings, attempts, or notes>
 ```
 
 **Example:**
 
 ```markdown
-## 2026-08-13 - Jira comment from platform-lead
+## 2026-08-13 - Limit scope to rev-B boards
 
-Confirmed this only reproduces on rev-B boards, not rev-A - rev-A uses a
-different NVMe vendor with different ASPM timing.
+**Status:** Accepted
 
-**Decision:** Scope narrowed to rev-B only. Rev-A is explicitly out of
-scope for this ticket (updated in ISSUE.md).
+**Decision:** Limit this issue to rev-B boards; rev-A is out of scope.
+
+**Rationale:** The failure reproduces only on rev-B, which uses a different
+NVMe vendor and ASPM timing.
+
+**Impact:** Update `ISSUE.md` and exclude rev-A from validation.
+
+**References:** [Platform-lead Jira comment](sources/ticket-comment-2026-08-13.md)
 ```
 
 ---
