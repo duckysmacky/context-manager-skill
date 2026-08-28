@@ -120,6 +120,11 @@ readonly core_files=(
   CONNECTIONS.md
   HANDOFF.md
 )
+readonly supporting_directories=(
+  notes
+  sources
+  attachments
+)
 
 [[ -d "$templates_dir" ]] || die "templates directory not found: $templates_dir"
 
@@ -139,6 +144,8 @@ cleanup() {
   fi
 }
 trap cleanup EXIT
+
+mkdir -p "${supporting_directories[@]/#/$staging_dir/}"
 
 sed_escape() {
   printf '%s' "$1" | sed -e 's/[\\&|]/\\&/g'
@@ -181,4 +188,4 @@ trap - EXIT
 
 printf 'Created %s\n' "$issue_dir"
 printf 'Next: populate ISSUE.md summary, scope, acceptance criteria, and links.\n'
-printf 'Create notes/, sources/, or attachments/ only when the issue needs them.\n'
+printf 'Created supporting directories: notes/, sources/, and attachments/.\n'
