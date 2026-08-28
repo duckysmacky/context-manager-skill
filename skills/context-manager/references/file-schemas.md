@@ -292,9 +292,8 @@ ones per entry:
 ## `HANDOFF.md` - living document
 
 **Purpose:** the single file a cold-start session or a different agent
-should be able to read and immediately know what to do next. See
-`references/session-handoff.md` for the full protocol around *when* and
-*how* this file gets written and read - this section is just its shape.
+should be able to read and immediately know what to do next. [SKILL.md](../SKILL.md)
+defines when to read and write it; this section defines its shape.
 
 Overwritten every time a session ends, not appended to.
 
