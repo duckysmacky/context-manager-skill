@@ -8,6 +8,8 @@ Some engineering tasks don't fit in one session. A single feature implementation
 
 In those situations conversation history doesn't survive across sessions or across agents. This skill keeps that context in the filesystem instead, so any agent picking up the progress can reconstruct the full picture before doing anything.
 
+This skill is aimed to help developers when working on big features, long-lasting tickets or anything else which is being worked on for a long period of time and needs constant context update and tracking to keep everything in mind - these are the areas where this skill works the best at.
+
 It tracks:
 
 - the issue, scope, and acceptance criteria
@@ -16,6 +18,9 @@ It tracks:
 - durable decisions, their rationale, and resulting impact
 - relationships between issues
 - the current handoff state and next action
+
+> [!TIP]
+> It is very recommended to use this skill in combination with the [caveman skill](https://github.com/JuliusBrussee/caveman) to make the agent output more concise and compressed, saving many tokens in the process of writing and reading of the context files
 
 ## How it works
 
@@ -85,7 +90,8 @@ Also, the repository and skill include [a complete real-life example](skills/con
 
 The materials were taken from a **real BIOS project**, where a single Jira ticket was worked on for ~3 months, with complex research, many attempts, and incremental solution discovery. It contains technical investigation, chronology, failed attempts, findings, conversations, and handoff state, providing a practical showcase of how the skill can be used throughout a complex real-world project.
 
-> Note that all sensitive and private information from the source folder was removed or anonymized to comply with company policies. In those places, the example provides renamed terms and placeholder files (such as logs), but all technical depth and the core issue were preserved.
+> [Note]
+> All sensitive and private information from the source folder was removed or anonymized to comply with company policies. In those places, the example provides renamed terms and placeholder files (such as logs), but all technical depth and the core issue were preserved.
 
 ## Motivation
 
