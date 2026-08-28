@@ -23,6 +23,7 @@ Each issue gets a self-contained folder:
 
 ```text
 .context/
+├── ISSUES.md                 # project index of managed issues
 └── <ISSUE-ID>/
     ├── ISSUE.md
     ├── FINDINGS.md
@@ -35,12 +36,10 @@ Each issue gets a self-contained folder:
     └── attachments/
 ```
 
-The six Markdown files are the entry points and sources of truth. Optional folders hold detailed analysis, source material, and evidence without making the core state noisy.
-
 To scaffold an issue manually, run the bundled helper from the installed skill directory:
 
 ```bash
-scripts/new_issue.sh <issue_id> --kind <issue_kind> --title <issue_title>
+scripts/new_issue.sh <issue_id> --kind <issue_kind> --title <issue_title> --description <short_description>
 ```
 
 ## Install

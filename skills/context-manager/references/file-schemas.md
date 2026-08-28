@@ -19,6 +19,28 @@ and `payment-system`, a self-directed one.
 
 ---
 
+## `.context/ISSUES.md` — living document
+
+**Purpose:** the project-level catalogue of issue folders managed by this
+system. It makes managed issues discoverable without treating every directory
+under `.context/` as an issue.
+
+Keep one Markdown-table row per issue, using this exact header:
+
+```markdown
+| Name | Short description | Status |
+| --- | --- | --- |
+| [FW-1427](FW-1427/ISSUE.md) | NVMe drives fail after S3 resume | open |
+```
+
+`Name` links to the issue's `ISSUE.md`. `Short description` is a concise,
+current summary. `Status` mirrors the status in that issue's `ISSUE.md`.
+Create the initial row with `scripts/new_issue.sh`; update the description or
+status whenever the issue changes. Do not list unrelated `.context/`
+directories.
+
+---
+
 ## `ISSUE.md` — living document
 
 **Purpose:** what this issue is, right now. The one file every session must

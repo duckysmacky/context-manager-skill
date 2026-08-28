@@ -10,18 +10,21 @@ usage() {
   cat <<'EOF'
 Usage: new_issue.sh <ISSUE-ID> [options]
 
-Create the six core context files under .context/<ISSUE-ID>/.
+Create an issue folder and add it to .context/ISSUES.md.
 
 Options:
   --kind KIND     Issue kind: feature, bug, refactor, or investigation.
                   Defaults to feature.
   --title TEXT    Issue title. Defaults to ISSUE-ID.
+  --description TEXT
+                  Short issue description for the catalogue. Defaults to the title.
   --root PATH     Project root where .context/ is stored. Defaults to the
                   current directory. PATH must already exist.
   -h, --help      Show this help text.
 
 Examples:
-  new_issue.sh FW-1427 --kind bug --title "Intermittent NVMe discovery"
+  new_issue.sh FW-1427 --kind bug --title "Intermittent NVMe discovery" \\
+    --description "Drives fail to re-enumerate after S3 resume"
   new_issue.sh payment-system --kind feature
   new_issue.sh auth-refactor --root /path/to/project
 EOF
@@ -54,6 +57,7 @@ resolve_script_dir() {
 issue_id=""
 issue_kind="feature"
 issue_title=""
+issue_description=""
 project_root="."
 
 while (( $# > 0 )); do
@@ -66,6 +70,11 @@ while (( $# > 0 )); do
     --title)
       require_value "$1" "$#"
       issue_title="$2"
+      shift 2
+      ;;
+    --description)
+      require_value "$1" "$#"
+      issue_description="$2"
       shift 2
       ;;
     --root)
@@ -107,11 +116,15 @@ project_root="$(cd -P -- "$project_root" && pwd)"
 [[ -n "$issue_title" ]] || issue_title="$issue_id"
 [[ "$issue_title" != *$'\n'* && "$issue_title" != *$'\r'* ]] ||
   die "--title must be a single line"
+[[ -n "$issue_description" ]] || issue_description="$issue_title"
+[[ "$issue_description" != *$'\n'* && "$issue_description" != *$'\r'* ]] ||
+  die "--description must be a single line"
 
 readonly script_dir="$(resolve_script_dir)"
 readonly templates_dir="$script_dir/../assets/templates"
 readonly context_dir="$project_root/.context"
 readonly issue_dir="$context_dir/$issue_id"
+readonly catalogue_path="$context_dir/ISSUES.md"
 readonly core_files=(
   ISSUE.md
   FINDINGS.md
@@ -127,6 +140,8 @@ readonly supporting_directories=(
 )
 
 [[ -d "$templates_dir" ]] || die "templates directory not found: $templates_dir"
+[[ -f "$templates_dir/ISSUES.md" ]] ||
+  die "missing issue catalogue template: $templates_dir/ISSUES.md"
 
 for name in "${core_files[@]}"; do
   [[ -f "$templates_dir/$name" ]] || die "missing core template: $templates_dir/$name"
@@ -149,6 +164,10 @@ mkdir -p "${supporting_directories[@]/#/$staging_dir/}"
 
 sed_escape() {
   printf '%s' "$1" | sed -e 's/[\\&|]/\\&/g'
+}
+
+markdown_table_cell() {
+  printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/|/\\|/g'
 }
 
 readonly today="$(date +%Y-%m-%d)"
@@ -186,6 +205,15 @@ mv "$staging_dir" "$issue_dir"
 staging_dir=""
 trap - EXIT
 
+if [[ ! -e "$catalogue_path" ]]; then
+  cp "$templates_dir/ISSUES.md" "$catalogue_path"
+fi
+[[ -f "$catalogue_path" ]] || die "issue catalogue is not a file: $catalogue_path"
+printf '| [%s](%s/ISSUE.md) | %s | open |\n' \
+  "$issue_id" "$issue_id" "$(markdown_table_cell "$issue_description")" \
+  >> "$catalogue_path"
+
 printf 'Created %s\n' "$issue_dir"
+printf 'Added %s to %s\n' "$issue_id" "$catalogue_path"
 printf 'Next: populate ISSUE.md summary, scope, acceptance criteria, and links.\n'
 printf 'Created supporting directories: notes/, sources/, and attachments/.\n'

@@ -46,23 +46,33 @@ Every issue is usually of two kinds:
 
 ## The .context/ folder
 
-Each issue gets its own subfolder, named after its ticket ID, at the root of the repository (or wherever the project's context root is configured):
+Each issue gets its own subfolder, named after its ticket ID, at the root of the repository (or wherever the project's context root is configured). `ISSUES.md` is the project-level catalogue: use it to find managed issue folders and distinguish them from unrelated `.context/` directories.
 
 ```
 .context/
+├── ISSUES.md                # index of managed issues, descriptions, and statuses
 └── <ISSUE-ID>/              # e.g. .context/FW-1427/ or .context/something-support/
     ├── ISSUE.md             # what the issue is: description, scope, acceptance criteria, links
     ├── FINDINGS.md          # durable technical facts discovered along the way
     ├── ATTEMPTS.md          # every approach tried, and its outcome
-    ├── DECISIONS.md     # durable choices, their rationale, and impact
+    ├── DECISIONS.md         # durable choices, their rationale, and impact
     ├── CONNECTIONS.md       # relationships and dependencies between issues
     ├── HANDOFF.md           # notes for the next session or agent
     ├── notes/               # working analyses, procedures, reports, and design notes
-    ├── sources/              # source text: ticket descriptions, conversations, prompts, document excerpts
+    ├── sources/             # source text: ticket descriptions, conversations, prompts, document excerpts
     └── attachments/         # logs, traces, screenshots, diagrams, dumps, patches, and other artifacts
 ```
 
 The exact structure expected inside each file is in `references/file-schemas.md`. Folder and file naming rules are in `references/naming-conventions.md`.
+
+### Issue catalogue
+
+`ISSUES.md` is a living Markdown table with `Name`, `Short description`, and
+`Status` columns. It indexes only issue folders managed by this system; other
+directories under `.context/` are not issues unless listed there. Read it when
+you need to locate a project issue. When creating an issue, use
+`scripts/new_issue.sh` so it adds the initial row. When an issue's description
+or status changes, update its row to match `ISSUE.md`.
 
 ### Supporting folders
 
@@ -79,7 +89,8 @@ Use relative links between core files, notes, sources, and attachments so the wh
 
 ### 1. Starting work with a new issue
 
-Check whether .context/<ISSUE-ID>/ already exists.
+First consult `.context/ISSUES.md` when it exists to locate the project issue.
+Then check whether `.context/<ISSUE-ID>/` already exists.
 
 - It doesn't exist - this is a fresh start. Create the folder and scaffold the standard files. If 
 `scripts/new_issue.sh` is present - use it, otherwise copy the templates from assets/templates/. 
@@ -108,6 +119,8 @@ already ruled out without saying so.
 
 - **Made or confirmed a durable decision?** (a scope change, design choice, priority call, or accepted trade-off) - append it to `DECISIONS.md`. State the decision, rationale, and impact; link the supporting source, finding, attempt, or note when useful.
 
+- **Changed an issue's short description or status?** - update the matching `ISSUES.md` row at the same time as `ISSUE.md`.
+
 - **Found a dependency on, or relationship to, another issue?** - append to `CONNECTIONS.md`, referencing the 
   other issue's ID directly and how they connect.
 
@@ -131,6 +144,7 @@ the `.context/` folder is the only thing that reliably is.
 ## Guidelines
 
 - One `.context/<ISSUE-ID>/` folder per issue
+- `ISSUES.md` is the project catalogue, not an issue folder or a replacement for `ISSUE.md`. Keep one row per managed issue and do not list unrelated `.context/` directories.
 - Never share a folder across issues, even closely related ones
 - Don't duplicate the same fact across files: `FINDINGS.md` is the single source of truth for technical facts, `ATTEMPTS.md` for 
   what was tried, and `DECISIONS.md` for durable choices and their rationale. Raw conversation belongs in `sources/`. If you're not

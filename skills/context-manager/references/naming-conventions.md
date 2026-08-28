@@ -50,6 +50,13 @@ ISSUE.md  FINDINGS.md  ATTEMPTS.md  DECISIONS.md  CONNECTIONS.md  HANDOFF.md
 Don't repurpose one of these names for something else, and don't create a
 near-miss (`Findings.md`, `finding.md`).
 
+## Project-level catalogue
+
+`.context/ISSUES.md` is the reserved project-level issue catalogue. It is not
+an issue folder and should contain rows only for managed `.context/<ISSUE-ID>/`
+folders. Keep its exact uppercase name and do not use it for unrelated context
+or project notes.
+
 ## Supporting folders
 
 Use these exact lowercase names when an issue needs supporting material:
@@ -60,9 +67,9 @@ sources/         # textual material received from external sources
 attachments/    # captured or native evidence and artifacts
 ```
 
-Do not create alternate names such as `docs/`, `source/`, `files/`,
-or `artifacts/`. Do not create any of these folders until the issue has content
-that belongs there.
+`scripts/new_issue.sh` creates these folders empty when it scaffolds an issue;
+they may remain empty until supporting material is needed. Do not create
+alternate names such as `docs/`, `source/`, `files/`, or `artifacts/`.
 
 **Files in `notes/`** - use lowercase-kebab-case `.md` names that describe
 their actual content:
