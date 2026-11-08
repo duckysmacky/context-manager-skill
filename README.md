@@ -56,7 +56,7 @@ scripts/new_issue.sh <issue_id> --kind <issue_kind> --title <issue_title> --desc
 Add my custom skills marketplace:
 
 ```bash
-claude plugin marketplace add duckysmacky/skills
+claude plugin marketplace add duckysmacky/duckysmacky-plugin-marketplace
 ```
 
 Install the skill as a Claude Code plugin:
